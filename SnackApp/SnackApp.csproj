@@ -71,9 +71,17 @@
     <Content Include="Pages\Main.aspx" />
     <Content Include="Pages\Main_Admin.aspx" />
     <Content Include="Pages\Register.aspx" />
+    <Content Include="Pages\RegVerification.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\RegVerification.aspx.cs">
+      <DependentUpon>RegVerification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\RegVerification.aspx.designer.cs">
+      <DependentUpon>RegVerification.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
