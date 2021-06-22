@@ -10,6 +10,7 @@ GO
 CREATE TABLE users(
 	userID int IDENTITY(1,1) PRIMARY KEY,
 	user_name varchar(255),
+	email varchar(255),
 	password varchar(255),
 	salt int,
 	verified bit,
