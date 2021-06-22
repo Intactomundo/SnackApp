@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Main.aspx" />
+    <Content Include="Pages\Main_Admin.aspx" />
     <Content Include="Pages\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -86,6 +87,13 @@
     </Compile>
     <Compile Include="Pages\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main_Admin.aspx.cs">
+      <DependentUpon>Main_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Main_Admin.aspx.designer.cs">
+      <DependentUpon>Main_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

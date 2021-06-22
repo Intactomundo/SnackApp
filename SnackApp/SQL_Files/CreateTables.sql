@@ -22,6 +22,7 @@ GO
 CREATE TABLE items(
 	itemID int IDENTITY(1,1) PRIMARY KEY,
 	item_name varchar(255),
+	item_image image
 );
 GO
 
@@ -33,6 +34,7 @@ CREATE TABLE user_items(
 	fk_itemID int NOT NULL,
 	month varchar(255),
 	year int,
+	numberOfItems int,
 	FOREIGN KEY (fk_userID) REFERENCES users(userID),
 	FOREIGN KEY (fk_itemID) REFERENCES items(itemID)
 );
