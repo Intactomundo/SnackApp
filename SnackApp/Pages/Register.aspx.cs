@@ -45,9 +45,8 @@ namespace SnackApp.Pages
                         string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
                         using (SqlConnection con = new SqlConnection(conStr))
                         {
-                            SqlCommand sqlInsertUser = new SqlCommand(@"SET IDENTITY_INSERT users ON;
-                                                                        INSERT INTO users(user_name, email, password, verified, is_admin, salt) VALUES (@username, @email, @password, @verified, @is_admin, @salt);
-                                                                        SET IDENTITY_INSERT users OFF;", con);
+                            SqlCommand sqlInsertUser = new SqlCommand(@"SET IDENTITY_INSERT users OFF;
+                                                                        INSERT INTO users(user_name, email, password, verified, is_admin, salt) VALUES (@username, @email, @password, @verified, @is_admin, @salt);", con);
 
                             string hashedPassword = Utilities.getHashSha256(password + salt);
 
