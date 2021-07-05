@@ -67,20 +67,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\Items_Admin.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Main.aspx" />
     <Content Include="Pages\Main_Admin.aspx" />
     <Content Include="Pages\Register.aspx" />
     <Content Include="Pages\RegVerification.aspx" />
+    <Content Include="Pages\UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Items_Admin.aspx.cs">
+      <DependentUpon>Items_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Items_Admin.aspx.designer.cs">
+      <DependentUpon>Items_Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RegVerification.aspx.cs">
       <DependentUpon>RegVerification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\RegVerification.aspx.designer.cs">
       <DependentUpon>RegVerification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="Pages\Login.aspx.cs">
@@ -123,6 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_LocalResources\" />
     <Folder Include="SQL_Files\" />
     <Folder Include="UnitTests\" />
   </ItemGroup>

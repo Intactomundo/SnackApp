@@ -100,5 +100,19 @@ namespace SnackApp
                 }
             }
         }
+
+        public int getUserÌD(string username)
+        {
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlGetUserÌD = new SqlCommand(@"SELECT userID FROM [dbo].[users] WHERE user_name = @username", con);
+                sqlGetUserÌD.Parameters.AddWithValue("@username", username);
+                con.Open();
+                Int32 userID = (Int32)sqlGetUserÌD.ExecuteScalar();
+
+                return userID;
+            }
+        }
     }
 }

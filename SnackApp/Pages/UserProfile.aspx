@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="SnackApp.Pages.Main" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="SnackApp.Pages.UserProfile" %>
 
 <!DOCTYPE html>
 
@@ -20,20 +20,11 @@
                 <div class="nav-wrapper">
                     <a id="logo" runat="server" href="Main.aspx" class="brand-logo center">SnackAPP</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="active"><a id="nav_home" href="Main.aspx" runat="server">Home</a></li>
-                        <li><a id="nav_userProfile" href="UserProfile.aspx" runat="server">User Profile</a></li>
+                        <li ><a id="nav_home" href="Main.aspx" runat="server">Home</a></li>
+                        <li class="active"><a id="nav_userProfile" href="UserProfile.aspx" runat="server">User Profile</a></li>
                     </ul>
                 </div>
             </nav>
-        </div>
-        <div>
-            <asp:GridView ID="tbl_itemsConsumed" runat="server" OnRowUpdating="tbl_itemsConsumed_RowUpdating" onRow>
-                <Columns>
-                    <asp:ImageField DataImageUrlField="item_iamge" AlternateText="Snack Image" NullDisplayText="No image of this item in the Database." ReadOnly="true" HeaderText="Snack"></asp:ImageField>
-                    <asp:BoundField DataField="numberOfItems" HeaderText="Number of Snack Consumed"/>
-                    <asp:ButtonField CommandName="Update" HeaderText="Add 1 Item Consumed" ShowHeader="true" Text="Add"/>
-                </Columns>
-            </asp:GridView>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -48,10 +48,11 @@ namespace SnackApp
                         bool is_verified = utils.checkIfUserIsVerified(username);
                         if(is_verified == true)
                         {
-                            Session["username"] = username;
+                            Session["user"] = username;
                             bool is_admin = utils.checkIfUserIsAdmin(username);
                             if (is_admin == true)
                             {
+                                Session["admin"] = is_admin;
                                 Response.Redirect("Main_Admin.aspx");
                             }
                             else

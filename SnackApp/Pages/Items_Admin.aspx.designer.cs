@@ -11,7 +11,7 @@ namespace SnackApp.Pages
 {
 
 
-    public partial class Main
+    public partial class Items_Admin
     {
 
         /// <summary>
@@ -33,30 +33,21 @@ namespace SnackApp.Pages
         protected global::System.Web.UI.HtmlControls.HtmlAnchor logo;
 
         /// <summary>
-        /// nav_home control.
+        /// nav_users control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_home;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_users;
 
         /// <summary>
-        /// nav_userProfile control.
+        /// nav_items control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_userProfile;
-
-        /// <summary>
-        /// tbl_itemsConsumed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tbl_itemsConsumed;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_items;
     }
 }
