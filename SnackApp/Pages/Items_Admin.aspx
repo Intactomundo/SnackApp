@@ -27,7 +27,24 @@
             </nav>
         </div>
         <div>
-            
+            <asp:GridView ID="tbl_items" runat="server" OnRowDeleting="tbl_items_RowDeleting" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField DataField="itemID" HeaderText="SnackID" />
+                    <asp:ImageField DataImageUrlField="item_path" AlternateText="Item Image" NullDisplayText="No image on file." HeaderText="Snack Image" ReadOnly="true"></asp:ImageField>
+                    <asp:BoundField DataField="item_name" HeaderText="Snack" />
+                    <asp:ButtonField CommandName="Delete" HeaderText="Delete Snack" ShowHeader="true" Text="Delete" />
+                </Columns>
+            </asp:GridView>
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="material-icons">apps</i>
+            </a>
+            <ul>
+                <li><button runat="server" id="btn_addItem" onclick="btn_addItem_Click" class="btn-floating green"><i class="material-icons">add</i></button></li>
+                <li><button runat="server" id="btn_editItem" onclick="btn_editItem_Click" class="btn-floating yellow darken-1"><i class="material-icons">edit</i></button></li>
+                <li><button runat="server" id="btn_report" onclick="btn_report_Click" class="btn-floating blue"><i class="material-icons">note</i></button></li>
+            </ul>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -35,6 +52,7 @@
     <script>
         $(document).ready(function () {
             $('.sidenav').sidenav();
+            $('.fixed-action-btn').floatingActionButton();
         });
     </script>
 </body>

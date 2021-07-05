@@ -16,32 +16,32 @@ namespace SnackApp.Pages
         {
             if (!Page.IsPostBack)
             {
-                //if (Session["admin"] != null)
-                //{
-                string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(conStr))
+                if (Session["admin"] != null)
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(@"SELECT userID, user_name, email, verified FROM users WHERE is_admin = 0", con);
-                    DataTable data = new DataTable();
-                    con.Open();
-                    da.Fill(data);
-
-                    tbl_users.DataSource = data;
-                    tbl_users.DataBind();
-
-                    if (data.Rows.Count == 0)
+                    string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(conStr))
                     {
-                        string result = "There are currently no users in the database!";
-                        Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                        SqlDataAdapter da = new SqlDataAdapter(@"SELECT userID, user_name, email, verified FROM users WHERE is_admin = 0", con);
+                        DataTable data = new DataTable();
+                        con.Open();
+                        da.Fill(data);
+
+                        tbl_users.DataSource = data;
+                        tbl_users.DataBind();
+
+                        if (data.Rows.Count == 0)
+                        {
+                            string result = "There are currently no users in the database!";
+                            Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                        }
                     }
                 }
-                //}
-                //else
-                //{
-                //    string result = "Current user isn't an Admin.";
-                //    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
-                //    Response.Redirect("Main.aspx");
-                //}
+                else
+                {
+                    string result = "Current user isn't an Admin.";
+                    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                    Response.Redirect("Main.aspx");
+                }
             }
         }
 
@@ -75,7 +75,7 @@ namespace SnackApp.Pages
             string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                SqlCommand sqlDeleteUser = new SqlCommand(@"DELETE FROM users WHERE userID = " + userid+ ";", con);
+                SqlCommand sqlDeleteUser = new SqlCommand(@"DELETE FROM users WHERE userID = " + userid + ";", con);
                 con.Open();
                 sqlDeleteUser.ExecuteNonQuery();
                 tbl_users.DataBind();

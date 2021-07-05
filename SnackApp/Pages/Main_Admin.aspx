@@ -34,7 +34,7 @@
                     <asp:BoundField DataField="email" HeaderText="E-Mail"/>
                     <asp:BoundField DataField="verified" HeaderText="Verified"/>
                     <asp:ButtonField CommandName="Update" HeaderText="Verify User" ShowHeader="true" Text="Verify" />
-                    <asp:ButtonField CommandName="Deleting" HeaderText="Delete User" ShowHeader="true" Text="Delete"/>
+                    <asp:ButtonField CommandName="Delete" HeaderText="Delete User" ShowHeader="true" Text="Delete"/>
                 </Columns>
             </asp:GridView>
         </div>
