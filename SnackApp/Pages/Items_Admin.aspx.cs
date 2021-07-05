@@ -47,22 +47,46 @@ namespace SnackApp.Pages
 
         protected void tbl_items_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            int itemid = Int32.Parse(tbl_items.Rows[e.RowIndex].Cells[0].Text);
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlDeleteUser = new SqlCommand(@"DELETE FROM items WHERE itemID = " + itemid + ";", con);
+                con.Open();
+                sqlDeleteUser.ExecuteNonQuery();
+                tbl_items.DataBind();
+                con.Close();
+                Response.Redirect("Items_Admin.aspx");
+            }
         }
 
         protected void btn_addItem_Click(object sender, EventArgs e)
         {
+            if (fileUploader.HasFile)
+            {
+                string itemname = txt_itemName.Text;
+                string imageExtension = System.IO.Path.GetExtension(fileUploader.FileName);
+                fileUploader.SaveAs(Server.MapPath("~/item_images/" + itemname + imageExtension));
 
-        }
+                string itempath = @"~\item_images\" + itemname + imageExtension;
+                string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    SqlCommand sqlInsertItem = new SqlCommand(@"SET IDENTITY_INSERT users OFF; INSERT INTO items(item_name, item_path) VALUES (@item_name, @item_path);", con);
 
-        protected void btn_editItem_Click(object sender, EventArgs e)
-        {
+                    sqlInsertItem.Parameters.AddWithValue("@item_name", itemname);
+                    sqlInsertItem.Parameters.AddWithValue("@item_path", itempath);
+                    con.Open();
+                    sqlInsertItem.ExecuteNonQuery();
 
-        }
-
-        protected void btn_report_Click(object sender, EventArgs e)
-        {
-
+                    Response.Redirect("Items_Admin.aspx");
+                }
+            }
+            else
+            {
+                string result = "There is currently no image selected for the item!";
+                Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+            }
         }
     }
 }

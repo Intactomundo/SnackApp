@@ -60,30 +60,30 @@ namespace SnackApp.Pages
         protected global::System.Web.UI.WebControls.GridView tbl_items;
 
         /// <summary>
+        /// txt_itemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_itemName;
+
+        /// <summary>
+        /// fileUploader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUploader;
+
+        /// <summary>
         /// btn_addItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_addItem;
-
-        /// <summary>
-        /// btn_editItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_editItem;
-
-        /// <summary>
-        /// btn_report control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_report;
+        protected global::System.Web.UI.WebControls.Button btn_addItem;
     }
 }

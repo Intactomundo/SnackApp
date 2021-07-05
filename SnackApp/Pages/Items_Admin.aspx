@@ -41,10 +41,24 @@
                 <i class="material-icons">apps</i>
             </a>
             <ul>
-                <li><button runat="server" id="btn_addItem" onclick="btn_addItem_Click" class="btn-floating green"><i class="material-icons">add</i></button></li>
-                <li><button runat="server" id="btn_editItem" onclick="btn_editItem_Click" class="btn-floating yellow darken-1"><i class="material-icons">edit</i></button></li>
-                <li><button runat="server" id="btn_report" onclick="btn_report_Click" class="btn-floating blue"><i class="material-icons">note</i></button></li>
+                <li><button class="btn-floating green modal-trigger" data-target="modalAdd"><i class="material-icons">add</i></button></li>
+                <li><button class="btn-floating yellow darken-1 modal-trigger"  data-target="modalEdit"><i class="material-icons">edit</i></button></li>
+                <li><button class="btn-floating blue modal-trigger"  data-targer="modalReport"><i class="material-icons">note</i></button></li>
             </ul>
+        </div>
+        <div id="modalAdd" class="modal">
+            <div class="modal-content">
+                <h3>Add new Item</h3>
+                <hr />
+                <asp:TextBox runat="server" ID="txt_itemName" placeholder="Item Name"></asp:TextBox>
+                <div>Item Image</div>
+                <asp:FileUpload runat="server" ID="fileUploader" />
+                <hr />
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    <asp:Button runat="server" ID="btn_addItem" CssClass="modal-close waves-effect waves-green btn-flat" Text="Add Item" OnClick="btn_addItem_Click"/>
+                </div>
+            </div>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -53,6 +67,7 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.fixed-action-btn').floatingActionButton();
+            $('.modal').modal();
         });
     </script>
 </body>
