@@ -151,7 +151,13 @@
     <Folder Include="UnitTests\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\App_LocalResources\Main.aspx.resx" />
+    <EmbeddedResource Include="App_GlobalResources\language.en-US.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\language.de-DE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\language.fr-FR.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

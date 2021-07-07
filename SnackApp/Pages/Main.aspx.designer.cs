@@ -42,6 +42,15 @@ namespace SnackApp.Pages
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_home;
 
         /// <summary>
+        /// ddl_language_selector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ddl_language_selector;
+
+        /// <summary>
         /// tbl_itemsConsumed control.
         /// </summary>
         /// <remarks>
@@ -49,5 +58,32 @@ namespace SnackApp.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView tbl_itemsConsumed;
+
+        /// <summary>
+        /// btn_languageEnglish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_languageEnglish;
+
+        /// <summary>
+        /// btn_languageGêrman control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_languageGêrman;
+
+        /// <summary>
+        /// btn_languageFrench control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_languageFrench;
     }
 }

@@ -57,6 +57,8 @@ namespace SnackApp
                             }
                             else
                             {
+                                string language = utils.getUserLanguage(username);
+                                Session["language"] = language;
                                 Response.Redirect("Main.aspx");
                             }
                         }

@@ -80,6 +80,21 @@ namespace SnackApp
             }
         }
 
+        public string getUserLanguage(string username)
+        {
+            int userid = getUserÌD(username);
+
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlCheckIfUserIsVerified = new SqlCommand(@"SELECT language FROM users WHERE userID = @userid", con);
+                sqlCheckIfUserIsVerified.Parameters.AddWithValue("@userid", userid);
+                con.Open();
+                string language = sqlCheckIfUserIsVerified.ExecuteScalar().ToString();
+                return language;
+            }
+        }
+
         public bool checkIfUserIsVerified(string username)
         {
             string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
@@ -112,6 +127,20 @@ namespace SnackApp
                 Int32 userID = (Int32)sqlGetUserÌD.ExecuteScalar();
 
                 return userID;
+            }
+        }
+
+        public void updateUserLanguage(string username, string language)
+        {
+            int userID = getUserÌD(username);
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlUpdateUserLanguage = new SqlCommand(@"UPDATE users SET language = @language WHERE userID = @userID", con);
+                sqlUpdateUserLanguage.Parameters.AddWithValue("@language", language);
+                sqlUpdateUserLanguage.Parameters.AddWithValue("@userID", userID);
+                con.Open();
+                sqlUpdateUserLanguage.ExecuteNonQuery();
             }
         }
     }

@@ -21,7 +21,7 @@
                     <a id="logo" runat="server" href="Main.aspx" class="brand-logo center">SnackAPP</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="active"><a id="nav_home" href="Main.aspx" runat="server">Home</a></li>
-                        <li><a class="dropdown-trigger" href="#!" data-target="ddl_language">Language</a></li>
+                        <li><a id="ddl_language_selector" runat="server" class="dropdown-trigger" href="#!" data-target="ddl_language">Language</a></li>
                     </ul>
                 </div>
             </nav>
@@ -32,15 +32,15 @@
                     <asp:BoundField DataField="user_itemsID" HeaderText="Snack Number"/>
                     <asp:ImageField DataImageUrlField="item_path" AlternateText="Snack Image" NullDisplayText="No image of this item in the Database." ReadOnly="true" HeaderText="Snack"></asp:ImageField>
                     <asp:BoundField DataField="numberOfItems" HeaderText="Number of Snack Consumed"/>
-                    <asp:ButtonField CommandName="Update" HeaderText="Add 1 Item Consumed" ShowHeader="true" Text="Add"/>
+                    <asp:ButtonField CommandName="Update" HeaderText="Add 1 Item Consumed" ShowHeader="true" Text='<i class="material-icons">add</i>'/>
                 </Columns>
             </asp:GridView>
         </div>
         <ul id="ddl_language" class="dropdown-content">
             <li>
-                <a href="#!">English</a>
-                <a href="#!">German</a>
-                <a href="#!">Français</a>
+                <button id="btn_languageEnglish" runat="server" onserverclick="btn_languageEnglish_ServerClick">English</button>
+                <button id="btn_languageGêrman" runat="server" onserverclick="btn_languageGêrman_ServerClick">Deutsch</button>
+                <button id="btn_languageFrench" runat="server" onserverclick="btn_languageFrench_ServerClick">Français</button>
             </li>
         </ul>
     </form>
