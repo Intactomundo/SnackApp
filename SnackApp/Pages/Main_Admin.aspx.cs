@@ -16,8 +16,8 @@ namespace SnackApp.Pages
         {
             if (!Page.IsPostBack)
             {
-                if (Session["admin"] != null)
-                {
+                //if (Session["admin"] != null)
+                //{
                     string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
                     using (SqlConnection con = new SqlConnection(conStr))
                     {
@@ -35,13 +35,13 @@ namespace SnackApp.Pages
                             Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
                         }
                     }
-                }
-                else
-                {
-                    string result = "Current user isn't an Admin.";
-                    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
-                    Response.Redirect("Main.aspx");
-                }
+                //}
+                //else
+                //{
+                //    string result = "Current user isn't an Admin.";
+                //    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                //    Response.Redirect("Main.aspx");
+                //}
             }
         }
 
@@ -82,6 +82,11 @@ namespace SnackApp.Pages
                 con.Close();
                 Response.Redirect("Main_admin.aspx");
             }
+        }
+
+        protected void btn_userReport_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

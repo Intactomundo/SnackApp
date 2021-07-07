@@ -24,7 +24,7 @@ namespace SnackApp.Pages
                 string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(conStr))
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(@"SELECT items.item_image, user_items.numberOfItems FROM items FULL JOIN user_items ON items.itemID = user_items.user_itemsID WHERE fk_userID = @userid;", con);
+                    SqlDataAdapter da = new SqlDataAdapter(@"SELECT items.item_path, user_items.numberOfItems, user_items.user_itemsID FROM items FULL JOIN user_items ON items.itemID = user_items.fk_itemID WHERE user_items.fk_userID = @userid;", con);
                     da.SelectCommand.Parameters.AddWithValue("@userid", userid);
                     DataTable data = new DataTable();
                     con.Open();
@@ -33,7 +33,7 @@ namespace SnackApp.Pages
                     tbl_itemsConsumed.DataSource = data;
                     tbl_itemsConsumed.DataBind();
 
-                    if(data.Rows.Count == 0)
+                    if (data.Rows.Count == 0)
                     {
                         string result = "There are currently no Snacks available!";
                         Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
@@ -44,22 +44,28 @@ namespace SnackApp.Pages
             {
                 string result = "No user from whom to pull the data has been found!";
                 Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                Response.Redirect("Login.aspx");
             }
-        }
-
-        protected void ddl_language_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btn_updateUserProfile_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void tbl_itemsConsumed_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                // Get Current Number of Items Consumed by User
+                SqlCommand sqlGetNumberOfItemsConsumed = new SqlCommand(@"SELECT numberOfItems FROM user_items WHERE user_itemsID = @user_itemsID;", con);
+                sqlGetNumberOfItemsConsumed.Parameters.AddWithValue("@user_itemsID", tbl_itemsConsumed.Rows[e.RowIndex].Cells[0].Text);
+                con.Open();
+                Int32 numberOfItems = (Int32)sqlGetNumberOfItemsConsumed.ExecuteScalar();
 
+                // Update Number of Item Consumed by User
+                SqlCommand sqlAddItemConsumed = new SqlCommand(@"UPDATE user_items SET numberOfItems = @numberOfItems WHERE user_itemsID = @user_itemsID", con);
+                sqlAddItemConsumed.Parameters.AddWithValue("@user_itemsID", tbl_itemsConsumed.Rows[e.RowIndex].Cells[0].Text);
+                sqlAddItemConsumed.Parameters.AddWithValue("@numberOfItems", numberOfItems + 1);
+                sqlAddItemConsumed.ExecuteNonQuery();
+                Response.Redirect("Main.aspx");
+            }
         }
     }
 }

@@ -22,6 +22,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a id="nav_users" href="Main_Admin.aspx" runat="server">Users</a></li>
                         <li class="active"><a id="nav_items" href="Items_Admin.aspx" runat="server">Items</a></li>
+                        <li><a id="A1" href="Reports_Admin.aspx" runat="server">Reports</a></li>
                     </ul>
                 </div>
             </nav>
@@ -41,22 +42,45 @@
                 <i class="material-icons">apps</i>
             </a>
             <ul>
-                <li><button class="btn-floating green modal-trigger" data-target="modalAdd"><i class="material-icons">add</i></button></li>
-                <li><button class="btn-floating yellow darken-1 modal-trigger"  data-target="modalEdit"><i class="material-icons">edit</i></button></li>
-                <li><button class="btn-floating blue modal-trigger"  data-targer="modalReport"><i class="material-icons">note</i></button></li>
+                <li>
+                    <button class="btn-floating green modal-trigger" data-target="modalAdd"><i class="material-icons">add</i></button></li>
+                <li>
+                    <button class="btn-floating yellow darken-1 modal-trigger" data-target="modalEdit"><i class="material-icons">edit</i></button></li>
             </ul>
         </div>
         <div id="modalAdd" class="modal">
             <div class="modal-content">
-                <h3>Add new Item</h3>
-                <hr />
-                <asp:TextBox runat="server" ID="txt_itemName" placeholder="Item Name"></asp:TextBox>
-                <div>Item Image</div>
-                <asp:FileUpload runat="server" ID="fileUploader" />
-                <hr />
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-                    <asp:Button runat="server" ID="btn_addItem" CssClass="modal-close waves-effect waves-green btn-flat" Text="Add Item" OnClick="btn_addItem_Click"/>
+                <div>
+                    <h3>Add new Item</h3>
+                    <hr />
+                    <asp:TextBox runat="server" ID="txt_itemNameAdd" placeholder="Item Name"></asp:TextBox>
+                    <div>Item Image</div>
+                    <br />
+                    <asp:FileUpload runat="server" ID="fileUploaderAdd" />
+                    <hr />
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <asp:Button runat="server" ID="btn_addItem" CssClass="modal-close waves-green btn-flat" Text="Add Item" OnClick="btn_addItem_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalEdit" class="modal">
+            <div class="modal-content">
+                <div>
+                    <h3>Edit Item</h3>
+                    <hr />
+                    <asp:TextBox runat="server" ID="txt_itemID" placeholder="ItemID"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txt_itemNameEdit" placeholder="New Item Name"></asp:TextBox>
+                    <br />
+                    <div>New Item Image</div>
+                    <br />
+                    <asp:FileUpload runat="server" ID="fileUploaderEdit" />
+                    <hr />
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <asp:Button runat="server" ID="btn_editItem" CssClass="modal-close waves-green btn-flat" Text="Edit Item" OnClick="btn_editItem_Click" />
+                    </div>
                 </div>
             </div>
         </div>

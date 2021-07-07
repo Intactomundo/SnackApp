@@ -22,6 +22,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="active"><a id="nav_users" href="Main_Admin.aspx" runat="server">Users</a></li>
                         <li><a id="nav_items" href="Items_Admin.aspx" runat="server">Items</a></li>
+                        <li><a id="A1" href="Reports_Admin.aspx" runat="server">Reports</a></li>
                     </ul>
                 </div>
             </nav>
@@ -38,12 +39,32 @@
                 </Columns>
             </asp:GridView>
         </div>
+        <div class="fixed-action-btn">
+            <button data-target="modalReport" class="btn-floating btn-large red modal-trigger">
+                <i class="material-icons">note</i>
+            </button>
+        </div>
+        <div id="modalReport" class="modal">
+            <div class="modal-content">
+                <div>
+                    <h3>Create Report</h3>
+                    <hr />
+                    <asp:TextBox runat="server" ID="txt_reportUserIdOrAll" placeholder="UserID or All Users"></asp:TextBox>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <asp:Button runat="server" ID="btn_userReport" CssClass="modal-close waves-green btn-flat" Text="Add Item" OnClick="btn_userReport_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.sidenav').sidenav();
+            $('.fixed-action-btn').floatingActionButton();
+            $('.modal').modal();
         });
     </script>
 </body >

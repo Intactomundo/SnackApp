@@ -42,15 +42,6 @@ namespace SnackApp.Pages
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_home;
 
         /// <summary>
-        /// nav_userProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_userProfile;
-
-        /// <summary>
         /// tbl_itemsConsumed control.
         /// </summary>
         /// <remarks>

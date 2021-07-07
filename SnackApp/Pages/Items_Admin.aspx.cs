@@ -62,11 +62,11 @@ namespace SnackApp.Pages
 
         protected void btn_addItem_Click(object sender, EventArgs e)
         {
-            if (fileUploader.HasFile)
+            if (fileUploaderAdd.HasFile)
             {
-                string itemname = txt_itemName.Text;
-                string imageExtension = System.IO.Path.GetExtension(fileUploader.FileName);
-                fileUploader.SaveAs(Server.MapPath("~/item_images/" + itemname + imageExtension));
+                string itemname = txt_itemNameAdd.Text;
+                string imageExtension = System.IO.Path.GetExtension(fileUploaderAdd.FileName);
+                fileUploaderAdd.SaveAs(Server.MapPath("~/item_images/" + itemname + imageExtension));
 
                 string itempath = @"~\item_images\" + itemname + imageExtension;
                 string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
@@ -76,6 +76,37 @@ namespace SnackApp.Pages
 
                     sqlInsertItem.Parameters.AddWithValue("@item_name", itemname);
                     sqlInsertItem.Parameters.AddWithValue("@item_path", itempath);
+                    con.Open();
+                    sqlInsertItem.ExecuteNonQuery();
+
+                    Response.Redirect("Items_Admin.aspx");
+                }
+            }
+            else
+            {
+                string result = "There is currently no image selected for the item!";
+                Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+            }
+        }
+
+        protected void btn_editItem_Click(object sender, EventArgs e)
+        {
+            if (fileUploaderEdit.HasFile)
+            {
+                string itemname = txt_itemNameEdit.Text;
+                string itemid = txt_itemID.Text;
+                string imageExtension = System.IO.Path.GetExtension(fileUploaderEdit.FileName);
+                fileUploaderEdit.SaveAs(Server.MapPath("~/item_images/" + itemname + imageExtension));
+
+                string itempath = @"~\item_images\" + itemname + imageExtension;
+                string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    SqlCommand sqlInsertItem = new SqlCommand(@"UPDATE ITEMS SET item_name = @item_name, item_path = @item_path WHERE itemID = @itemID", con);
+
+                    sqlInsertItem.Parameters.AddWithValue("@item_name", itemname);
+                    sqlInsertItem.Parameters.AddWithValue("@item_path", itempath);
+                    sqlInsertItem.Parameters.AddWithValue("@itemID", itemid);
                     con.Open();
                     sqlInsertItem.ExecuteNonQuery();
 

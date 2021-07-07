@@ -14,7 +14,8 @@ CREATE TABLE users(
 	password varchar(255),
 	salt int,
 	verified bit,
-	is_admin bit
+	is_admin bit,
+	language varchar(255)
 );
 GO
 

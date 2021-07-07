@@ -11,7 +11,7 @@ namespace SnackApp.Pages
 {
 
 
-    public partial class Items_Admin
+    public partial class Reports_Admin
     {
 
         /// <summary>
@@ -60,75 +60,75 @@ namespace SnackApp.Pages
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
 
         /// <summary>
-        /// tbl_items control.
+        /// tbl_reports control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tbl_items;
+        protected global::System.Web.UI.WebControls.GridView tbl_reports;
 
         /// <summary>
-        /// txt_itemNameAdd control.
+        /// txt_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_itemNameAdd;
+        protected global::System.Web.UI.WebControls.TextBox txt_username;
 
         /// <summary>
-        /// fileUploaderAdd control.
+        /// rd_singleReportUser_outputTypePDF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUploaderAdd;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rd_singleReportUser_outputTypePDF;
 
         /// <summary>
-        /// btn_addItem control.
+        /// rd_singleReportUser_outputTypeTXT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addItem;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rd_singleReportUser_outputTypeTXT;
 
         /// <summary>
-        /// txt_itemID control.
+        /// btn_createSingleUserReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_itemID;
+        protected global::System.Web.UI.WebControls.Button btn_createSingleUserReport;
 
         /// <summary>
-        /// txt_itemNameEdit control.
+        /// rd_totalUserReport_outputTypePDF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_itemNameEdit;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rd_totalUserReport_outputTypePDF;
 
         /// <summary>
-        /// fileUploaderEdit control.
+        /// rd_totalUserReport_outputTypeTXT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUploaderEdit;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rd_totalUserReport_outputTypeTXT;
 
         /// <summary>
-        /// btn_editItem control.
+        /// btn_createTotalUserReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_editItem;
+        protected global::System.Web.UI.WebControls.Button btn_createTotalUserReport;
     }
 }
