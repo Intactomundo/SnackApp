@@ -21,32 +21,32 @@ namespace SnackApp.Pages
         {
             if (!Page.IsPostBack)
             {
-                //if (Session["admin"] != null)
-                //{
-                string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(conStr))
+                if (Session["admin"] != null)
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(@"SELECT users.user_name, user_items.numberOfItems, items.item_name FROM ((Users INNER JOIN user_items ON users.userID = user_items.fk_userID) INNER JOIN items ON items.itemID = user_items.fk_itemID);", con);
-                    DataTable data = new DataTable();
-                    con.Open();
-                    da.Fill(data);
-
-                    tbl_reports.DataSource = data;
-                    tbl_reports.DataBind();
-
-                    if (data.Rows.Count == 0)
+                    string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(conStr))
                     {
-                        string result = "There are currently no reports available!";
-                        Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                        SqlDataAdapter da = new SqlDataAdapter(@"SELECT users.user_name, user_items.numberOfItems, items.item_name FROM ((Users INNER JOIN user_items ON users.userID = user_items.fk_userID) INNER JOIN items ON items.itemID = user_items.fk_itemID);", con);
+                        DataTable data = new DataTable();
+                        con.Open();
+                        da.Fill(data);
+
+                        tbl_reports.DataSource = data;
+                        tbl_reports.DataBind();
+
+                        if (data.Rows.Count == 0)
+                        {
+                            string result = "There are currently no reports available!";
+                            Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                        }
                     }
                 }
-                //}
-                //else
-                //{
-                //    string result = "Current user isn't an Admin.";
-                //    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
-                //    Response.Redirect("Main.aspx");
-                //}
+                else
+                {
+                    string result = "Current user isn't an Admin.";
+                    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                    Response.Redirect("Main.aspx");
+                }
             }
         }
 
@@ -83,7 +83,7 @@ namespace SnackApp.Pages
             {
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename="+ username + "Report.txt");
+                Response.AddHeader("content-disposition", "attachment;filename=" + username + "Report.txt");
                 Response.Charset = "";
                 Response.ContentType = "application/text";
                 tbl_reports.AllowPaging = false;

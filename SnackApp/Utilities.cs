@@ -116,6 +116,20 @@ namespace SnackApp
             }
         }
 
+        internal int getItemID(string itemname)
+        {
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlGetItemID = new SqlCommand(@"SELECT itemID FROM items WHERE item_name = @itemname", con);
+                sqlGetItemID.Parameters.AddWithValue("@itemname", itemname);
+                con.Open();
+                Int32 itemID = (Int32)sqlGetItemID.ExecuteScalar();
+
+                return itemID;
+            }
+        }
+
         public int getUserÌD(string username)
         {
             string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
@@ -142,6 +156,46 @@ namespace SnackApp
                 con.Open();
                 sqlUpdateUserLanguage.ExecuteNonQuery();
             }
+        }
+
+        public List<int> getUserIDsInList()
+        {
+            List<int> useridList = new List<int>();
+
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlUpdateUserLanguage = new SqlCommand(@"SELECT userID FROM users WHERE is_admin = 0", con);
+                con.Open();
+                using (SqlDataReader sdr = sqlUpdateUserLanguage.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        useridList.Add((int)sdr[0]);
+                    }
+                }
+            }
+            return useridList;
+        }
+
+        public List<int> getItemIds()
+        {
+            List<int> itemidsList = new List<int>();
+
+            string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand sqlUpdateUserLanguage = new SqlCommand(@"SELECT itemID FROM items", con);
+                con.Open();
+                using (SqlDataReader sdr = sqlUpdateUserLanguage.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        itemidsList.Add((int)sdr[0]);
+                    }
+                }
+            }
+            return itemidsList;
         }
     }
 }
