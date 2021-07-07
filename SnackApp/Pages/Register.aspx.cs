@@ -45,8 +45,7 @@ namespace SnackApp.Pages
                         string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
                         using (SqlConnection con = new SqlConnection(conStr))
                         {
-                            SqlCommand sqlInsertUser = new SqlCommand(@"SET IDENTITY_INSERT users OFF;
-                                                                        INSERT INTO users(user_name, email, password, verified, is_admin, salt) VALUES (@username, @email, @password, @verified, @is_admin, @salt);", con);
+                            SqlCommand sqlInsertUser = new SqlCommand(@"SET IDENTITY_INSERT users OFF; INSERT INTO users(user_name, email, password, verified, is_admin, salt) VALUES (@username, @email, @password, @verified, @is_admin, @salt);", con);
 
                             string hashedPassword = Utilities.getHashSha256(password + salt);
 
@@ -58,6 +57,23 @@ namespace SnackApp.Pages
                             sqlInsertUser.Parameters.AddWithValue("@salt", salt);
                             con.Open();
                             sqlInsertUser.ExecuteNonQuery();
+                            con.Close();
+
+
+                            int userid = utils.getUserÌD(username);
+                            List<int> itemIDs = utils.getItemIds();
+                            int listLength = itemIDs.Count;
+
+                            for (int i = 0; i < listLength; i++)
+                            {
+                                SqlCommand sqlIsertUserItemsForUser = new SqlCommand(@"SET IDENTITY_INSERT users OFF; INSERT INTO user_items(fk_userID, fk_itemID, numberOfItems) VALUES (@fk_userID, @fk_itemID, 0);", con);
+
+                                sqlIsertUserItemsForUser.Parameters.AddWithValue("@fk_userID", userid);
+                                sqlIsertUserItemsForUser.Parameters.AddWithValue("@fk_itemID", itemIDs[i]);
+                                con.Open();
+                                sqlIsertUserItemsForUser.ExecuteNonQuery();
+                                con.Close();
+                            }
 
                             Response.Redirect("RegVerification.aspx");
                         }

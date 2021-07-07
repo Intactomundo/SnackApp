@@ -16,8 +16,8 @@ namespace SnackApp.Pages
         {
             if (!Page.IsPostBack)
             {
-                //if (Session["admin"] != null)
-                //{
+                if (Session["admin"] != null)
+                {
                     string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
                     using (SqlConnection con = new SqlConnection(conStr))
                     {
@@ -35,13 +35,13 @@ namespace SnackApp.Pages
                             Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
                         }
                     }
-                //}
-                //else
-                //{
-                //    string result = "Current user isn't an Admin.";
-                //    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
-                //    Response.Redirect("Main.aspx");
-                //}
+                }
+                else
+                {
+                    string result = "Current user isn't an Admin.";
+                    Response.Write("<script type='text/javascript'>alert('" + result + "')</script>");
+                    Response.Redirect("Main.aspx");
+                }
             }
         }
 
@@ -51,8 +51,10 @@ namespace SnackApp.Pages
             string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conStr))
             {
+                SqlCommand sqlDeleteItemReferences = new SqlCommand(@"DELETE FROM user_items WHERE fk_itemID = " + itemid + ";", con);
                 SqlCommand sqlDeleteUser = new SqlCommand(@"DELETE FROM items WHERE itemID = " + itemid + ";", con);
                 con.Open();
+                sqlDeleteItemReferences.ExecuteNonQuery();
                 sqlDeleteUser.ExecuteNonQuery();
                 tbl_items.DataBind();
                 con.Close();
@@ -64,9 +66,12 @@ namespace SnackApp.Pages
         {
             if (fileUploaderAdd.HasFile)
             {
+                Utilities utils = new Utilities();
                 string itemname = txt_itemNameAdd.Text;
                 string imageExtension = System.IO.Path.GetExtension(fileUploaderAdd.FileName);
                 fileUploaderAdd.SaveAs(Server.MapPath("~/item_images/" + itemname + imageExtension));
+
+                List<int> userids = utils.getUserIDsInList();
 
                 string itempath = @"~\item_images\" + itemname + imageExtension;
                 string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
@@ -78,7 +83,20 @@ namespace SnackApp.Pages
                     sqlInsertItem.Parameters.AddWithValue("@item_path", itempath);
                     con.Open();
                     sqlInsertItem.ExecuteNonQuery();
+                    con.Close();
 
+                    int itemid = utils.getItemID(itemname);
+                    int listLength = userids.Count;
+                    for (int i = 0; i < listLength; i++)
+                    {
+                        SqlCommand sqlInsertUserItems = new SqlCommand(@"SET IDENTITY_INSERT users OFF; INSERT INTO user_items(fk_userID, fk_itemID, numberOfItems) VALUES (@fk_userID, @fk_itemID, 0);", con);
+
+                        sqlInsertUserItems.Parameters.AddWithValue("@fk_userID", userids[i]);
+                        sqlInsertUserItems.Parameters.AddWithValue("@fk_itemID", itemid);
+                        con.Open();
+                        sqlInsertUserItems.ExecuteNonQuery();
+                        con.Close();
+                    }
                     Response.Redirect("Items_Admin.aspx");
                 }
             }

@@ -38,9 +38,9 @@
         </div>
         <ul id="ddl_language" class="dropdown-content">
             <li>
-                <button id="btn_languageEnglish" runat="server" onserverclick="btn_languageEnglish_ServerClick">English</button>
-                <button id="btn_languageGêrman" runat="server" onserverclick="btn_languageGêrman_ServerClick">Deutsch</button>
-                <button id="btn_languageFrench" runat="server" onserverclick="btn_languageFrench_ServerClick">Français</button>
+                <button class="waves-effect waves-light btn" id="btn_languageEnglish" runat="server" onserverclick="btn_languageEnglish_ServerClick">English</button>
+                <button class="waves-effect waves-light btn" id="btn_languageGêrman" runat="server" onserverclick="btn_languageGêrman_ServerClick">Deutsch</button>
+                <button class="waves-effect waves-light btn" id="btn_languageFrench" runat="server" onserverclick="btn_languageFrench_ServerClick">Français</button>
             </li>
         </ul>
     </form>
