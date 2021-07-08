@@ -30,7 +30,8 @@
             <asp:GridView ID="tbl_itemsConsumed" runat="server" OnRowUpdating="tbl_itemsConsumed_RowUpdating" AutoGenerateColumns="false">
                 <Columns>
                     <asp:BoundField DataField="user_itemsID" HeaderText="Snack Number"/>
-                    <asp:ImageField DataImageUrlField="item_path" AlternateText="Snack Image" NullDisplayText="No image of this item in the Database." ReadOnly="true" HeaderText="Snack"></asp:ImageField>
+                    <asp:ImageField DataImageUrlField="item_path" AlternateText="Snack Image" 
+                        NullDisplayText="No image of this item in the Database." ReadOnly="true" HeaderText="Snack"></asp:ImageField>
                     <asp:BoundField DataField="numberOfItems" HeaderText="Number of Snack Consumed"/>
                     <asp:ButtonField CommandName="Update" HeaderText="Add 1 Item Consumed" ShowHeader="true" Text='<i class="material-icons">add</i>'/>
                 </Columns>

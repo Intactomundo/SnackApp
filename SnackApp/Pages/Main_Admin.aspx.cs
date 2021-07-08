@@ -85,10 +85,5 @@ namespace SnackApp.Pages
                 Response.Redirect("Main_admin.aspx");
             }
         }
-
-        protected void btn_userReport_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
