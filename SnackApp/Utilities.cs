@@ -16,7 +16,7 @@ namespace SnackApp
             string conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                SqlCommand sqlCheckIfUserExists = new SqlCommand(@"SELECT COUNT(*) FROM [dbo].[users] WHERE user_name = @username", con);
+                SqlCommand sqlCheckIfUserExists = new SqlCommand(@"SELECT COUNT(*) FROM users WHERE user_name = @username", con);
                 sqlCheckIfUserExists.Parameters.AddWithValue("@username", username);
                 con.Open();
                 Int32 count = (Int32)sqlCheckIfUserExists.ExecuteScalar();

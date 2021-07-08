@@ -148,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SQL_Files\" />
-    <Folder Include="UnitTests\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\language.en-US.resx" />

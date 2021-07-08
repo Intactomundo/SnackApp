@@ -2,7 +2,7 @@
 -- Create the different Tables
 -- ======================
 
-USE master
+USE DB_SnackAPP
 GO
 
 -- Create Table users
